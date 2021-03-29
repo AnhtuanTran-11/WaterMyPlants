@@ -1,9 +1,7 @@
-import styled from 'styled-components';
+import React from "react";
 
-const StyledComponent = styled.div`
-/*      change^ */
-background-color: #eee;
-box-sizing: border-box;
-`;
+const StyledComponent = () => {
+  return <div></div>;
+};
+
 export default StyledComponent;
-//                 change^

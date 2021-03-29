@@ -1,4 +1,6 @@
 import {
+  ADD_PLANT,
+  FAILED_ADDED_PLANT,
   FAILED_LOADED_PLANTS,
   LOADED_PLANTS,
   START_LOAD_PLANTS,
@@ -45,6 +47,10 @@ export const plantReducer = (state = initialData, action) => {
       };
     case FAILED_LOADED_PLANTS:
       return { ...state, errorMessage: action.payload, isLoading: false };
+    case ADD_PLANT:
+      return { ...state, myPlants: [...state.myPlants, action.payload] };
+    case FAILED_ADDED_PLANT:
+      return { ...state, errorMessage: action.payload };
     default:
       return state;
   }
