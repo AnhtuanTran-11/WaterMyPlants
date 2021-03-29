@@ -1,18 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { addPlant } from "../store/actions/plantActions";
+import { addPlant } from '../../store/actions/plantActions';
 
-const AddEditForm = () => {
+const EditForm = (props) => {
   const plants = useSelector((state) => state.plantReducer.myPlants);
   const dispatch = useDispatch();
   console.log(plants);
 
   const formik = useFormik({
     initialValues: {
-      nickname: "Plant",
-      species: "Species of plant",
-      h20Frequency: 5,
+      nickname: props.plant.nickname,
+      species: props.plant.species,
+      h20Frequency: props.plant.h20Frequency,
     },
     onSubmit: (values) => {
       dispatch(addPlant(values));
@@ -58,4 +58,4 @@ const AddEditForm = () => {
   );
 };
 
-export default AddEditForm;
+export default EditForm;
