@@ -6,6 +6,7 @@ export const FAILED_LOADED_PLANTS = "FAILED_LOADED_PLANTS";
 export const ADD_PLANT = "ADD_PLANT";
 export const FAILED_ADDED_PLANT = "FAILED_ADDED_PLANT";
 export const EDIT_PLANT = "EDIT_PLANT";
+export const DELETE_PLANT = "DELETE_PLANT";
 
 export const fetchPlants = () => {
   return (dispatch) => {
@@ -48,6 +49,21 @@ export const editPlant = (plant) => {
       .then((res) => {
         console.log(res);
         dispatch({ type: EDIT_PLANT, payload: res });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const deletePlant = (plant) => {
+  return (dispatch) => {
+    console.log("DELETE Plant actions", plant);
+    axiosWithAuth()
+      .delete("https://jsonplaceholder.typicode.com/post") //needs plantID
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: DELETE_PLANT, payload: plant.id });
       })
       .catch((err) => {
         console.log(err);

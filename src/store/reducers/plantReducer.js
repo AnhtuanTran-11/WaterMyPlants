@@ -1,5 +1,7 @@
 import {
   ADD_PLANT,
+  DELETE_PLANT,
+  EDIT_PLANT,
   FAILED_ADDED_PLANT,
   FAILED_LOADED_PLANTS,
   LOADED_PLANTS,
@@ -51,6 +53,22 @@ export const plantReducer = (state = initialData, action) => {
       return { ...state, myPlants: [...state.myPlants, action.payload] };
     case FAILED_ADDED_PLANT:
       return { ...state, errorMessage: action.payload };
+    case EDIT_PLANT:
+      return {
+        ...state,
+        myPlants: state.myPlants.map((plant) => {
+          if (plant.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return plant;
+          }
+        }),
+      };
+    case DELETE_PLANT:
+      return {
+        ...state,
+        myPlants: state.myPlants.filter((plant) => plant.id !== action.payload),
+      };
     default:
       return state;
   }

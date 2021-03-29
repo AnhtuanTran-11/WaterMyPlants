@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPlants } from "../store/actions/plantActions";
+import { deletePlant, fetchPlants } from "../store/actions/plantActions";
 import AddForm from "./AddForm";
-import EditForm from './editForm/EditForm';
+import EditForm from "./editForm/EditForm";
 
 const MyPlants = () => {
   const plants = useSelector((state) => state.plantReducer.myPlants);
@@ -18,8 +18,13 @@ const MyPlants = () => {
 
   const plantEditor = (plant) => {
     setEditing(true);
-    setPlantEditing(plant)
-  }
+    setPlantEditing(plant);
+  };
+
+  const plantDelete = (plant) => {
+    dispatch(deletePlant(plant));
+  };
+
   return (
     <div>
       <p> MyPlants </p>
@@ -27,7 +32,15 @@ const MyPlants = () => {
       {adding ? <AddForm /> : null}
       {editing ? <EditForm plant={plantEditing} /> : null}
       {plants.map((plant) => {
-        return <h1 onClick={() => plantEditor(plant)} key={plant.url}> {plant.name} </h1>;
+        return (
+          <div>
+            <h1 onClick={() => plantEditor(plant)} key={plant.url}>
+              {" "}
+              {plant.name}{" "}
+            </h1>
+            <button onClick={() => plantDelete(plant)}> DELETE </button>
+          </div>
+        );
       })}
     </div>
   );
