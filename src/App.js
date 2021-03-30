@@ -3,6 +3,7 @@ import MyPlants from "./components/MyPlants";
 import NavBar from "./components/navBar/NavBar";
 import { Switch, Route } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
+import Login from './components/Login';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <UserProfile />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </div>

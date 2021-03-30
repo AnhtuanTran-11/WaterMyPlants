@@ -1,18 +1,18 @@
+import React, { useState } from "react";
+// import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
-export const LOG_IN_START = "LOG_IN_START";
-export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
-export const LOG_IN_FAIL = "LOG_IN_FAIL";
+export default function Login(props) {
+  const [credentials, setCredentials] = useState({
+    username: "admin",
+    password: "password",
+  });
 
-// export const SIGN_OUT = "SIGN_OUT";
-
-export const setUserData = (user) => {
-  return (dispatch) => {
-    dispatch({ type: LOG_IN_START });
+  const dummyLogin = () => {
     axios
       .post(
         "https://watermyplant-tt7.herokuapp.com/login",
-        `grant_type=password&username=${user.username}&password=${user.password}`,
+        `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
         {
           headers: {
             // btoa is converting our client id/client secret into base64
@@ -25,10 +25,12 @@ export const setUserData = (user) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
         // props.history.push("/userinfo");
-        dispatch({ type: LOG_IN_SUCCESS, payload: user });
-      })
-      .catch((err) => {
-        dispatch({ type: LOG_IN_FAIL, payload: err });
       });
   };
-};
+
+  return (
+    <div>
+      <button onClick={() => dummyLogin()}>Login</button>
+    </div>
+  );
+}
