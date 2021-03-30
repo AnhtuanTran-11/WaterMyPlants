@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { editUserData } from "../store/actions/editUserActions";
+import SignupSchema from "./validation/formSchema";
 
 const UserProfile = () => {
   const loginInfo = useSelector((state) => state.loginReducer);
@@ -14,29 +15,22 @@ const UserProfile = () => {
       phoneNumber: loginInfo.userData.phoneNumber,
       password: loginInfo.userData.password,
     },
+    validationSchema: SignupSchema,
     onSubmit: (values) => {
       dispatch(editUserData(values));
+      console.log(values);
     },
   });
 
-  const saveUserInfo = () => {
-    dispatch(editUserData(formik.values));
-    setIsEditing(false);
-  };
+  console.log(formik);
 
   return (
     <div>
-      {isEditing ? (
-        <button onClick={() => saveUserInfo()}> Save User Info</button>
-      ) : (
-        <button onClick={() => setIsEditing(!isEditing)}>
-          {" "}
-          Edit User Info
-        </button>
-      )}
+      <button onClick={() => setIsEditing(!isEditing)}> Edit User Info</button>
 
       {isEditing ? (
         <form onSubmit={formik.handleSubmit}>
+          <button type="submit">submit</button>
           <label>
             username
             <input
@@ -47,6 +41,7 @@ const UserProfile = () => {
               value={formik.values.username}
             />
           </label>
+          {formik.errors.username && <p>{formik.errors.username}</p>}
           <label>
             phoneNumber
             <input
@@ -57,6 +52,7 @@ const UserProfile = () => {
               value={formik.values.phoneNumber}
             />
           </label>
+          {formik.errors.phoneNumber && <p>{formik.errors.phoneNumber}</p>}
           <label>
             password
             <input
@@ -67,6 +63,7 @@ const UserProfile = () => {
               value={formik.values.password}
             />
           </label>
+          {formik.errors.password && <p>{formik.errors.password}</p>}
         </form>
       ) : (
         <div>
