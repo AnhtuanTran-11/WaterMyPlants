@@ -8,15 +8,15 @@ export const FAILED_ADDED_PLANT = "FAILED_ADDED_PLANT";
 export const EDIT_PLANT = "EDIT_PLANT";
 export const DELETE_PLANT = "DELETE_PLANT";
 
-export const fetchPlants = () => {
+export const fetchPlants = (id) => {
   return (dispatch) => {
     dispatch({ type: START_LOAD_PLANTS });
     console.log("fetchplants actions");
     axiosWithAuth()
-      .get("/pokemon")
+      .get(`https://watermyplant-tt7.herokuapp.com/plants/${id}`)
       .then((res) => {
-        console.log(res.data.results);
-        dispatch({ type: LOADED_PLANTS, payload: res.data.results });
+        console.log(res.data);
+        dispatch({ type: LOADED_PLANTS, payload: res.data });
       })
       .catch((err) => {
         console.log(err);
