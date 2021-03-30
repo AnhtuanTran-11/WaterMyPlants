@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavBarStyles = styled.div`
+const SignupStyles = styled.div`
   width: 100%;
   border: 1px solid red;
   display: flex;
@@ -18,7 +18,6 @@ const NavBarStyles = styled.div`
     text-decoration: none;
     color: black;
   }
-  
 `
 
-export default NavBarStyles;
+export default SignupStyles;

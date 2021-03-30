@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const NavBarStyles = styled.div`
   width: 100%;
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
