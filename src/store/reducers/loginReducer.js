@@ -3,6 +3,7 @@ import {
   LOG_IN_START,
   LOG_IN_SUCCESS,
   LOG_IN_FAIL,
+  FETCH_USER,
   // SIGN_OUT,
 } from "../actions/loginActions";
 
@@ -29,7 +30,6 @@ export const loginReducer = (state = initialValue, action) => {
     case LOG_IN_SUCCESS:
       return {
         ...state,
-        userData: action.payload,
         loadingLogin: false,
         loginError: "",
         isLoggedIn: true,
@@ -44,6 +44,8 @@ export const loginReducer = (state = initialValue, action) => {
       return { ...state, userData: action.payload };
     case EDIT_FAIL:
       return { ...state, loginError: action.payload };
+    case FETCH_USER:
+      return { ...state, userData: action.payload };
     // case SIGN_OUT:
     //   return {
     //     ...state,

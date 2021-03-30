@@ -6,15 +6,16 @@ import EditForm from "./editForm/EditForm";
 
 const MyPlants = () => {
   const { myPlants, isLoading } = useSelector((state) => state.plantReducer);
+  const { user } = useSelector((state) => state.loginReducer.userData);
   const dispatch = useDispatch();
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState(false);
   const [plantEditing, setPlantEditing] = useState(null);
-  console.log(myPlants, isLoading);
+  console.log(user);
 
   useEffect(() => {
-    dispatch(fetchPlants());
-  }, [dispatch]);
+    dispatch(fetchPlants(4));
+  }, []);
 
   const plantEditor = (plant) => {
     setEditing(true);
@@ -38,7 +39,7 @@ const MyPlants = () => {
               <div key={plant.url}>
                 <h1 onClick={() => plantEditor(plant)} key={plant.url}>
                   {" "}
-                  {plant.name}{" "}
+                  {plant.nickname} is a {plant.species}
                 </h1>
                 <button onClick={() => plantDelete(plant)}> DELETE </button>
               </div>

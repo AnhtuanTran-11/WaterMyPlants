@@ -1,8 +1,10 @@
 import axios from "axios";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const LOG_IN_START = "LOG_IN_START";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
 export const LOG_IN_FAIL = "LOG_IN_FAIL";
+export const FETCH_USER = "FETCH_USER";
 
 // export const SIGN_OUT = "SIGN_OUT";
 
@@ -25,7 +27,7 @@ export const setUserData = (user) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
         // props.history.push("/userinfo");
-        dispatch({ type: LOG_IN_SUCCESS, payload: user });
+        dispatch({ type: LOG_IN_SUCCESS });
       })
       .catch((err) => {
         dispatch({ type: LOG_IN_FAIL, payload: err });

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function Login(props) {
-  const [credentials, setCredentials] = useState({
+  let history = useHistory();
+  const [credentials] = useState({
     username: "admin",
     password: "password",
+    phoneNumber: "99923232323",
   });
 
   const dummyLogin = () => {
@@ -22,9 +24,9 @@ export default function Login(props) {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         localStorage.setItem("token", res.data.access_token);
-        // props.history.push("/userinfo");
+        history.push("/myplants");
       });
   };
 
