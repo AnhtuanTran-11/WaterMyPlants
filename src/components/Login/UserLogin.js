@@ -1,51 +1,59 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "../../store/actions/loginActions";
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
-    const [ credentials, setCredentials ] = useState ({ username: "", password: "" });
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.loginReducer);
+  let history = useHistory();
+  console.log(state);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(setUserData(credentials));
+  };
 
-    const login = (e) => {
-        axios
-        .post(
-            "https://watermyplant-tt7.herokuapp.com/login",
-			`grant_type=password&username=${credentials.username}&password=${credentials.password}`,
-			{
-				headers: {
-					// btoa is converting our client id/client secret into base64
-					Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
-					"Content-Type": "application/x-www-form-urlencoded",
-					},
-				},
-			)
-		.then((res) => {
-			console.log(res.data);
-			localStorage.setItem("token", res.data.access_token);
-			props.history.push("/userinfo");
-		});
-	};
+  const handleChange = (e) =>
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
 
-    const handleChange = (e) => 
-        setCredentials({
-            ...credentials,
-            [e.target.name]: e.target.value,
-        });
+  if (state.isLoggedIn) {
+    history.push("/myplants");
+  }
 
-    return (
-        <div className="Login">
-            <h2>Login to your account</h2>
-            <form onSubmit={login}>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={credentials.username} onChange={handleChange}/>
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password" value={credentials.password} onChange={handleChange}/> 
-                </label>
-                <button onClick={() => Login()}>Login In</button>
-            </form>
-        </div>
-    )
-}
+  return (
+    <div className="Login">
+      <h2>Login to your account</h2>
+      <form onSubmit={submitHandler}>
+        <label>
+          Username:
+          <input
+            type="text"
+            name="username"
+            value={credentials.username}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
 export default Login;
