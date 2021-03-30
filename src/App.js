@@ -10,8 +10,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   return (
     <div className="App">
-      <h1>Water my plants</h1>
       <NavBar />
+      <h1>Water my plants</h1>
       <Switch>
     <Route path="/login">
       <Login />
@@ -20,6 +20,22 @@ function App() {
         <PrivateRoute path="/myplants" component={MyPlants} />
         <PrivateRoute path="/profile" component={UserProfile} />
       </Switch>
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
+      <Login />
+      <SignUp />
     </div>
   );
 }
