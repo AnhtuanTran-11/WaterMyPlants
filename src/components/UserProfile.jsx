@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
+import { editUserData } from "../store/actions/editUserActions";
 
 const UserProfile = () => {
   const loginInfo = useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  console.log(loginInfo);
 
   const formik = useFormik({
     initialValues: {
@@ -15,13 +15,25 @@ const UserProfile = () => {
       password: loginInfo.userData.password,
     },
     onSubmit: (values) => {
-      //   dispatch(editUser(values));
+      dispatch(editUserData(values));
     },
   });
 
+  const saveUserInfo = () => {
+    dispatch(editUserData(formik.values));
+    setIsEditing(false);
+  };
+
   return (
     <div>
-      <button onClick={() => setIsEditing(!isEditing)}> Edit User Info</button>
+      {isEditing ? (
+        <button onClick={() => saveUserInfo()}> Save User Info</button>
+      ) : (
+        <button onClick={() => setIsEditing(!isEditing)}>
+          {" "}
+          Edit User Info
+        </button>
+      )}
 
       {isEditing ? (
         <form onSubmit={formik.handleSubmit}>
@@ -55,7 +67,6 @@ const UserProfile = () => {
               value={formik.values.password}
             />
           </label>
-          <button type="submit">Submit</button>
         </form>
       ) : (
         <div>
