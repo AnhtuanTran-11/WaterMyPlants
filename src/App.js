@@ -20,22 +20,6 @@ function App() {
         <PrivateRoute path="/myplants" component={MyPlants} />
         <PrivateRoute path="/profile" component={UserProfile} />
       </Switch>
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
-      <Login />
-      <SignUp />
     </div>
   );
 }
