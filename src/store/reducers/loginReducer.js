@@ -7,9 +7,9 @@ import {
 
 const initialValue = {
   userData: {
-    username: "",
-    password: "",
-    phoneNumber: 0,
+    username: "testUserName",
+    password: "TestPass",
+    phoneNumber: 987654321,
     //plantList: [],
   },
   loadingLogin: false,
