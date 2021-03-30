@@ -3,8 +3,8 @@ import * as yup from 'yup';
 export default yup.object().shape({
     username: yup
     .string()
-    .required("Username is required and must be unique")
-    .min(8, 'Username must be a minimum of 8 characters long'),
+    .required("Username is required")
+    .min(5, 'Username must be a minimum of 5 characters long'),
     phoneNumber: yup
     .string()
     .required('Phone number is required'),
