@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signInFunc } from "../../store/actions/loginActions";
+import { Link } from 'react-router-dom';
+import SignupStyles from './SignupStyles';
 
 const SignUp = (props) => {
   const [credentials, setCredentials] = useState({
@@ -23,6 +25,7 @@ const SignUp = (props) => {
     });
 
   return (
+    <SignupStyles>
     <div className="Sign-Up">
       <h3>Sign-up Today!</h3>
       <form onSubmit={submitHandler}>
@@ -55,7 +58,9 @@ const SignUp = (props) => {
         </label>
         <button>Sign-Up</button>
       </form>
+      <Link to="/login">Login</Link>
     </div>
+    </SignupStyles>
   );
 };
 export default SignUp;

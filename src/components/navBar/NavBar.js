@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import NavBarStyles from './NavBarStyles';
 
 const NavBar = (props) => {
   const signedIn = true;
   return (
-    <div>
-      <h1>NavBar</h1>
+    <NavBarStyles>
       {signedIn ? <NavLink to="/profile">Profile</NavLink> : null}
-      {signedIn ? <NavLink to="/login">Sign Out</NavLink> : null}
       {signedIn ? <NavLink to="/myplants">My Plants</NavLink> : null}
-    </div>
+      {signedIn ? <NavLink to="/login">Sign Out</NavLink> : null}
+    </NavBarStyles>
   );
 };
 

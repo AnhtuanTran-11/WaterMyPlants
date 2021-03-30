@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/actions/loginActions";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import UserLoginStyles from './UserLoginStyles';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -30,9 +31,11 @@ const Login = (props) => {
   }
 
   return (
+    <UserLoginStyles>
     <div className="Login">
-      <h2>Login to your account</h2>
-      <form onSubmit={submitHandler}>
+      <div className="textContainer">
+      <h2 className="loginHeader">Login to your account</h2>
+      <form className="form" onSubmit={submitHandler}>
         <label>
           Username:
           <input
@@ -53,7 +56,10 @@ const Login = (props) => {
         </label>
         <button type="submit">Login</button>
       </form>
+      <Link to="/signup">Signup</Link>
+      </div>
     </div>
+    </UserLoginStyles>
   );
 };
 export default Login;
