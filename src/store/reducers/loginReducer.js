@@ -1,3 +1,4 @@
+import { EDIT_FAIL, EDIT_SUCCESS } from "../actions/editUserActions";
 import {
   LOG_IN_START,
   LOG_IN_SUCCESS,
@@ -7,9 +8,9 @@ import {
 
 const initialValue = {
   userData: {
-    username: "",
-    password: "",
-    phoneNumber: 0,
+    username: "testUserName",
+    password: "TestPass",
+    phoneNumber: 987654321,
     //plantList: [],
   },
   loadingLogin: false,
@@ -39,6 +40,10 @@ export const loginReducer = (state = initialValue, action) => {
         loadingLogin: false,
         loginError: action.payload,
       };
+    case EDIT_SUCCESS:
+      return { ...state, userData: action.payload };
+    case EDIT_FAIL:
+      return { ...state, loginError: action.payload };
     // case SIGN_OUT:
     //   return {
     //     ...state,
