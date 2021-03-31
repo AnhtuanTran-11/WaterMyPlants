@@ -4,6 +4,7 @@ import { fetchUser } from "../store/actions/loginActions";
 import { deletePlant, fetchPlants } from "../store/actions/plantActions";
 import AddForm from "./AddForm";
 import EditForm from "./editForm/EditForm";
+import Plant from "./Plant";
 
 const MyPlants = () => {
   const { myPlants, isLoading } = useSelector((state) => state.plantReducer);
@@ -31,6 +32,11 @@ const MyPlants = () => {
     setPlantEditing(plant);
   };
 
+  const plantAdder = (plant) => {
+    setEditing(false);
+    setAdding(!adding);
+  };
+
   const plantDelete = (plantId) => {
     dispatch(deletePlant(plantId));
   };
@@ -38,7 +44,7 @@ const MyPlants = () => {
   return (
     <div>
       <h1> MyPlants </h1>
-      <button onClick={() => setAdding(!adding)}> Add a plant</button>
+      <button onClick={() => plantAdder()}> Add a plant</button>
       {adding ? <AddForm /> : null}
       {editing ? (
         <EditForm plant={plantEditing} setEditing={setEditing} />
@@ -47,18 +53,11 @@ const MyPlants = () => {
         ? "Loading Plants"
         : myPlants.map((plant) => {
             return (
-              <div key={plant.id}>
-                <h1 onClick={() => plantEditor(plant)}>
-                  {" "}
-                  {plant.nickname} is a {plant.species}{" "}
-                  {plant.h2oFrequency &&
-                    `that needs to be watered every ${plant.h2oFrequency} days`}
-                </h1>
-                <button onClick={() => plantDelete(plant.plantId)}>
-                  {" "}
-                  DELETE{" "}
-                </button>
-              </div>
+              <Plant
+                plant={plant}
+                plantEditor={plantEditor}
+                plantDelete={plantDelete}
+              />
             );
           })}
     </div>
