@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../store/actions/loginActions";
 import { deletePlant, fetchPlants } from "../../store/actions/plantActions";
-import AddForm from "../AddForm";
+import AddForm from "../addForm/AddForm";
 import EditForm from "../editForm/EditForm";
 import Plant from "./Plant";
 import MyPlantsStyles from "./myPlantsStyling";
@@ -29,11 +29,12 @@ const MyPlants = () => {
   }, [user.userid]);
 
   const plantEditor = (plant) => {
+    setAdding(false);
     setEditing(!editing);
     setPlantEditing(plant);
   };
 
-  const plantAdder = (plant) => {
+  const plantAdder = () => {
     setEditing(false);
     setAdding(!adding);
   };
@@ -44,10 +45,10 @@ const MyPlants = () => {
 
   return (
     <MyPlantsStyles>
+      {adding ? <AddForm plantAdder={plantAdder} /> : null}
       <div className="myPlantsContainer">
         <h1> MyPlants </h1>
         <button onClick={() => plantAdder()}> Add a plant</button>
-        {adding ? <AddForm /> : null}
         {editing ? (
           <EditForm plant={plantEditing} setEditing={setEditing} />
         ) : null}

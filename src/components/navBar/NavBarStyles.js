@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NavBarStyles = styled.div`
   width: 100%;
@@ -9,15 +9,14 @@ const NavBarStyles = styled.div`
   position: fixed;
   top: 0;
   padding: 1.5rem;
-  background: #00AB84;
+  background: #00ab84;
   font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   text-rendering: geometricPrecision;
   a {
     text-decoration: none;
     color: black;
   }
-  
-`
+`;
 
 export default NavBarStyles;
