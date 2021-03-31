@@ -12,7 +12,6 @@ const MyPlants = () => {
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState(false);
   const [plantEditing, setPlantEditing] = useState(null);
-  console.log(user);
 
   useEffect(() => {
     console.log("fetchUSER dispatched");
@@ -38,7 +37,9 @@ const MyPlants = () => {
       <h1> MyPlants </h1>
       <button onClick={() => setAdding(!adding)}> Add a plant</button>
       {adding ? <AddForm /> : null}
-      {editing ? <EditForm plant={plantEditing} /> : null}
+      {editing ? (
+        <EditForm plant={plantEditing} setEditing={setEditing} />
+      ) : null}
       {isLoading
         ? "Loading Plants"
         : myPlants.map((plant) => {
@@ -46,7 +47,9 @@ const MyPlants = () => {
               <div key={plant.id}>
                 <h1 onClick={() => plantEditor(plant)}>
                   {" "}
-                  {plant.nickname} is a {plant.species}
+                  {plant.nickname} is a {plant.species}{" "}
+                  {plant.h2oFrequency &&
+                    `that needs to be watered every ${plant.h2oFrequency} days`}
                 </h1>
                 <button onClick={() => plantDelete(plant)}> DELETE </button>
               </div>

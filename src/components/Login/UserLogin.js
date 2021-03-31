@@ -28,7 +28,7 @@ const Login = (props) => {
     if (state.isLoggedIn) {
       history.push("/myplants");
     }
-  }, []);
+  }, [state.isLoggedIn]);
 
   return (
     <UserLoginStyles>

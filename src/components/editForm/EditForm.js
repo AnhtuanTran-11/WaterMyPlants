@@ -1,12 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { addPlant } from '../../store/actions/plantActions';
+import { editPlant } from "../../store/actions/plantActions";
 
 const EditForm = (props) => {
-  const plants = useSelector((state) => state.plantReducer.myPlants);
   const dispatch = useDispatch();
-  console.log(plants);
 
   const formik = useFormik({
     initialValues: {
@@ -15,7 +13,15 @@ const EditForm = (props) => {
       h20Frequency: props.plant.h20Frequency,
     },
     onSubmit: (values) => {
-      dispatch(addPlant(values));
+      dispatch(
+        editPlant({
+          nickname: values.nickname,
+          species: values.species,
+          h20Frequency: values.h20Frequency,
+          plantId: props.plant.plantId,
+        })
+      );
+      props.setEditing(false);
     },
   });
 
