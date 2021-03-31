@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavBarStyles = styled.div`
+const UserLoginStyles = styled.div`
   .loginHeader {
     display: flex;
     justify-content: center;
@@ -13,8 +13,9 @@ const NavBarStyles = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     background-repeat: no-repeat;
-    background-size: 100vh;
-    margin-top: -15px;
+    background-position: center;
+    background-size: 100%;
+    margin-top: -10vh;
   }
   .textContainer {
     border-radius: 10px;
@@ -47,4 +48,4 @@ const NavBarStyles = styled.div`
 }
 `
 
-export default NavBarStyles;
+export default UserLoginStyles;

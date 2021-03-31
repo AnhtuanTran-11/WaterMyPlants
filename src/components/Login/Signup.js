@@ -25,48 +25,49 @@ const SignUp = (props) => {
       [e.target.name]: e.target.value,
     });
 
-  useEffect(() => {
     if (state.isLoggedIn) {
       history.push("/myplants");
     }
-  }, [state.isLoggedIn]);
 
   return (
     <SignupStyles>
-      <div className="Sign-Up">
-        <h3>Sign-up Today!</h3>
-        <form onSubmit={submitHandler}>
-          <label>
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={credentials.username}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Mobile Phone Number:
-            <input
-              type="phoneNumber"
-              name="phoneNumber"
-              value={credentials.phoneNumber}
-              onChange={handleChange}
-            />
-          </label>
-          <button>Sign-Up</button>
-        </form>
-        <Link to="/">Login</Link>
-      </div>
+    <div className="Sign-Up">
+      <div className='textContainer'>
+      <h2 className="signupHeader">Sign-up Today!</h2>
+      <form className="form" onSubmit={submitHandler}>
+        <label>
+          Username:
+          <input
+            type="text"
+            name="username"
+            value={credentials.username}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Mobile Phone Number:
+          <input
+            type="phoneNumber"
+            name="phoneNumber"
+            value={credentials.phoneNumber}
+            onChange={handleChange}
+          />
+        </label>
+        <button>Sign-Up</button>
+      </form>
+      <Link to="/login">Login</Link>
+    </div>
+    </div>
+
     </SignupStyles>
   );
 };

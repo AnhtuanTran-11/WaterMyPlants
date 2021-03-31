@@ -1,23 +1,51 @@
 import styled from 'styled-components';
 
 const SignupStyles = styled.div`
-  width: 100%;
-  border: 1px solid red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-content: space-evenly;
-  position: fixed;
-  top: 0;
-  padding: 1.5rem;
-  background: #00AB84;
-  font-weight: bold;
-  font-family: 'Roboto', sans-serif;
-  text-rendering: geometricPrecision;
+  .loginHeader {
+    display: flex;
+    justify-content: center;
+  }
+  height: 100vh;
+  .Sign-Up {
+    background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80');
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    margin-top: -15px;
+  }
+  .textContainer {
+    border-radius: 10px;
+    opacity: 0.8;
+    background: #E6E6E6;
+    margin-top: 20%;
+    width: 70%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  label {
+    margin-bottom: 10px;
+  }
   a {
     text-decoration: none;
-    color: black;
   }
+  a:visited {
+  color: green;
+}
 `
 
 export default SignupStyles;
