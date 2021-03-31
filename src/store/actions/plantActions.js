@@ -45,7 +45,10 @@ export const editPlant = (plant) => {
   return (dispatch) => {
     console.log("Add Plant actions", plant);
     axiosWithAuth()
-      .put("https://jsonplaceholder.typicode.com/post", plant) //needs plantID
+      .patch(
+        `https://watermyplant-tt7.herokuapp.com/plants/plant/${plant.id}`,
+        plant
+      ) //needs plantID
       .then((res) => {
         console.log(res);
         dispatch({ type: EDIT_PLANT, payload: res });

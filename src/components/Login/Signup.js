@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { signInFunc } from "../../store/actions/loginActions";
-import { Link } from 'react-router-dom';
-import SignupStyles from './SignupStyles';
+import { Link, useHistory } from "react-router-dom";
+import SignupStyles from "./SignupStyles";
 
 const SignUp = (props) => {
   const [credentials, setCredentials] = useState({
@@ -12,6 +11,8 @@ const SignUp = (props) => {
     phoneNumber: "",
   });
   const dispatch = useDispatch();
+  let history = useHistory();
+  const state = useSelector((state) => state.loginReducer);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signInFunc(credentials));
@@ -24,42 +25,48 @@ const SignUp = (props) => {
       [e.target.name]: e.target.value,
     });
 
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      history.push("/myplants");
+    }
+  }, [state.isLoggedIn]);
+
   return (
     <SignupStyles>
-    <div className="Sign-Up">
-      <h3>Sign-up Today!</h3>
-      <form onSubmit={submitHandler}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={credentials.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Mobile Phone Number:
-          <input
-            type="phoneNumber"
-            name="phoneNumber"
-            value={credentials.phoneNumber}
-            onChange={handleChange}
-          />
-        </label>
-        <button>Sign-Up</button>
-      </form>
-      <Link to="/login">Login</Link>
-    </div>
+      <div className="Sign-Up">
+        <h3>Sign-up Today!</h3>
+        <form onSubmit={submitHandler}>
+          <label>
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={credentials.username}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Mobile Phone Number:
+            <input
+              type="phoneNumber"
+              name="phoneNumber"
+              value={credentials.phoneNumber}
+              onChange={handleChange}
+            />
+          </label>
+          <button>Sign-Up</button>
+        </form>
+        <Link to="/">Login</Link>
+      </div>
     </SignupStyles>
   );
 };

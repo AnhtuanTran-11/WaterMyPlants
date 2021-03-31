@@ -1,6 +1,5 @@
 import axios from "axios";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-
 export const LOG_IN_START = "LOG_IN_START";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
 export const LOG_IN_FAIL = "LOG_IN_FAIL";
@@ -9,7 +8,7 @@ export const SIGNIN_IN_START = "SIGNIN_IN_START";
 export const SIGNIN_IN_SUCCESS = "SIGNIN_IN_SUCCESS";
 export const SIGNIN_IN_FAIL = "SIGNIN_IN_FAIL";
 
-// export const SIGN_OUT = "SIGN_OUT";
+export const SIGN_OUT = "SIGN_OUT";
 
 export const setUserData = (user) => {
   return (dispatch) => {
@@ -29,7 +28,6 @@ export const setUserData = (user) => {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
-
         dispatch({ type: LOG_IN_SUCCESS });
       })
       .catch((err) => {
@@ -38,16 +36,29 @@ export const setUserData = (user) => {
   };
 };
 
+export const fetchUser = (user) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .get("/users/getuserinfo")
+      .then((res) => {
+        console.log(res);
+        dispatch({ type: FETCH_USER, payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: SIGNIN_IN_FAIL, payload: err });
+      });
+  };
+};
+
 export const signInFunc = (user) => {
-  console.log(user);
   return (dispatch) => {
     dispatch({ type: SIGNIN_IN_START });
     axios
-      .post("https://watermyplant-tt7.herokuapp.com/users/createnewuser", user)
+      .post("https://watermyplant-tt7.herokuapp.com/createnewuser", user)
       .then((res) => {
-        console.log(res.data);
-        // localStorage.setItem("token", res.data.access_token);
-        // props.history.push("/userinfo");
+        console.log(res);
+        localStorage.setItem("token", res.data.access_token);
         dispatch({ type: SIGNIN_IN_SUCCESS });
       })
       .catch((err) => {
@@ -55,4 +66,9 @@ export const signInFunc = (user) => {
         dispatch({ type: SIGNIN_IN_FAIL, payload: err });
       });
   };
+};
+
+export const signOutFunc = (user) => {
+  localStorage.removeItem("token");
+  return { type: SIGN_OUT };
 };

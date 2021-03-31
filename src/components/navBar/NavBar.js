@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import NavBarStyles from './NavBarStyles';
+import { signOutFunc } from "../../store/actions/loginActions";
+import NavBarStyles from "./NavBarStyles";
 
 const NavBar = (props) => {
   const signedIn = true;
@@ -8,7 +9,11 @@ const NavBar = (props) => {
     <NavBarStyles>
       {signedIn ? <NavLink to="/profile">Profile</NavLink> : null}
       {signedIn ? <NavLink to="/myplants">My Plants</NavLink> : null}
-      {signedIn ? <NavLink to="/login">Sign Out</NavLink> : null}
+      {signedIn ? (
+        <NavLink to="/">
+          <span onClick={signOutFunc}>Sign Out</span>
+        </NavLink>
+      ) : null}
     </NavBarStyles>
   );
 };
