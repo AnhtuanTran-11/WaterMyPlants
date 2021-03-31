@@ -54,7 +54,9 @@ export const plantReducer = (state = initialData, action) => {
     case DELETE_PLANT:
       return {
         ...state,
-        myPlants: state.myPlants.filter((plant) => plant.id !== action.payload),
+        myPlants: state.myPlants.filter(
+          (plant) => plant.plantId !== action.payload
+        ),
       };
     default:
       return state;

@@ -19,9 +19,12 @@ const MyPlants = () => {
   }, []);
 
   useEffect(() => {
-    console.log("fetchplants dispatched");
-    dispatch(fetchPlants(user.userid));
-  }, [user]);
+    console.log(user.userid);
+    if (user.userid) {
+      console.log("fetchplants dispatched");
+      dispatch(fetchPlants(user.userid));
+    }
+  }, [user.userid]);
 
   const plantEditor = (plant) => {
     setEditing(!editing);

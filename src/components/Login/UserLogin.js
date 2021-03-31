@@ -10,7 +10,9 @@ const Login = (props) => {
     password: "",
   });
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.loginReducer);
+  const { isLoggedIn, loadingLogin } = useSelector(
+    (state) => state.loginReducer
+  );
   let history = useHistory();
 
   const submitHandler = (e) => {
@@ -25,17 +27,17 @@ const Login = (props) => {
     });
 
   useEffect(() => {
-    if (state.isLoggedIn) {
+    if (isLoggedIn) {
       history.push("/myplants");
     }
-  }, [state.isLoggedIn]);
+  }, [isLoggedIn]);
 
   return (
     <UserLoginStyles>
       <div className="Login">
         <div className="textContainer">
           <h2 className="loginHeader">Login to your account</h2>
-          {state.loadingLogin ? (
+          {loadingLogin ? (
             "LOADING"
           ) : (
             <form className="form" onSubmit={submitHandler}>
