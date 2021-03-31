@@ -68,6 +68,7 @@ export const loginReducer = (state = initialValue, action) => {
         loginError: action.payload,
       };
     case SIGN_OUT:
+      console.log("SIGNOUT REDUCER");
       return {
         ...state,
         userData: "",
