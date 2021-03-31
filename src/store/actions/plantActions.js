@@ -43,12 +43,15 @@ export const addPlant = (plant) => {
 
 export const editPlant = (plant) => {
   return (dispatch) => {
-    console.log("Add Plant actions", plant);
+    console.log("Edit Plant actions", plant);
     axiosWithAuth()
-      .put("https://jsonplaceholder.typicode.com/post", plant) //needs plantID
+      .patch(
+        `https://watermyplant-tt7.herokuapp.com/plants/plant/${plant.plantId}`,
+        plant
+      ) //needs plantID
       .then((res) => {
-        console.log(res);
-        dispatch({ type: EDIT_PLANT, payload: res });
+        console.log(res.data);
+        dispatch({ type: EDIT_PLANT, payload: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +66,7 @@ export const deletePlant = (plant) => {
       .delete("https://jsonplaceholder.typicode.com/post") //needs plantID
       .then((res) => {
         console.log(res);
-        dispatch({ type: DELETE_PLANT, payload: plant.id });
+        dispatch({ type: DELETE_PLANT, payload: plant.plantId });
       })
       .catch((err) => {
         console.log(err);

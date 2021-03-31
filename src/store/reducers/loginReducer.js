@@ -4,14 +4,17 @@ import {
   LOG_IN_SUCCESS,
   LOG_IN_FAIL,
   FETCH_USER,
-  // SIGN_OUT,
+  SIGNIN_IN_START,
+  SIGNIN_IN_SUCCESS,
+  SIGNIN_IN_FAIL,
+  SIGN_OUT,
 } from "../actions/loginActions";
 
 const initialValue = {
   userData: {
-    username: "testUserName",
-    password: "TestPass",
-    phoneNumber: 987654321,
+    username: "",
+    password: "",
+    phoneNumber: 0,
     //plantList: [],
   },
   loadingLogin: false,
@@ -46,14 +49,32 @@ export const loginReducer = (state = initialValue, action) => {
       return { ...state, loginError: action.payload };
     case FETCH_USER:
       return { ...state, userData: action.payload };
-    // case SIGN_OUT:
-    //   return {
-    //     ...state,
-    //     userData: "",
-    //     loadingLogin: false,
-    //     loginError: "",
-    //     isLoggedIn: false,
-    //   };
+    case SIGNIN_IN_START:
+      return {
+        ...state,
+        loadingLogin: true,
+      };
+    case SIGNIN_IN_SUCCESS:
+      return {
+        ...state,
+        loadingLogin: false,
+        loginError: "",
+        isLoggedIn: true,
+      };
+    case SIGNIN_IN_FAIL:
+      return {
+        ...state,
+        loadingLogin: false,
+        loginError: action.payload,
+      };
+    case SIGN_OUT:
+      return {
+        ...state,
+        userData: "",
+        loadingLogin: false,
+        loginError: "",
+        isLoggedIn: false,
+      };
     default:
       return state;
   }

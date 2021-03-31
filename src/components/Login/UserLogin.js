@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/actions/loginActions";
 import { useHistory, Link } from "react-router-dom";
-import UserLoginStyles from './UserLoginStyles';
+import UserLoginStyles from "./UserLoginStyles";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -13,7 +12,6 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.loginReducer);
   let history = useHistory();
-  console.log(state);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -26,39 +24,45 @@ const Login = (props) => {
       [e.target.name]: e.target.value,
     });
 
-  if (state.isLoggedIn) {
-    history.push("/myplants");
-  }
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      history.push("/myplants");
+    }
+  }, [state.isLoggedIn]);
 
   return (
     <UserLoginStyles>
-    <div className="Login">
-      <div className="textContainer">
-      <h2 className="loginHeader">Login to your account</h2>
-      <form className="form" onSubmit={submitHandler}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={credentials.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-      <Link to="/signup">Signup</Link>
+      <div className="Login">
+        <div className="textContainer">
+          <h2 className="loginHeader">Login to your account</h2>
+          {state.loadingLogin ? (
+            "LOADING"
+          ) : (
+            <form className="form" onSubmit={submitHandler}>
+              <label>
+                Username:
+                <input
+                  type="text"
+                  name="username"
+                  value={credentials.username}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Password:
+                <input
+                  type="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                />
+              </label>
+              <button type="submit">Login</button>
+            </form>
+          )}
+          <Link to="/signup">Signup</Link>
+        </div>
       </div>
-    </div>
     </UserLoginStyles>
   );
 };

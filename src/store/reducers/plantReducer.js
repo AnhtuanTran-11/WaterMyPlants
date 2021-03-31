@@ -12,23 +12,9 @@ const initialData = {
   myPlants: [
     {
       id: 500,
-      nickname: "Green Plant 55",
-      species: "ficus",
-      h2oFrequency: 5,
-      // image: (optional)
-    },
-    {
-      id: 501,
-      nickname: "Red Plant 55",
-      species: "Tree",
-      h2oFrequency: 2,
-      // image: (optional)
-    },
-    {
-      id: 9999,
-      nickname: "Mushroom",
-      species: "Mushroom tree",
-      h2oFrequency: 4,
+      nickname: "",
+      species: "",
+      h2oFrequency: 0,
       // image: (optional)
     },
   ],
@@ -54,10 +40,11 @@ export const plantReducer = (state = initialData, action) => {
     case FAILED_ADDED_PLANT:
       return { ...state, errorMessage: action.payload };
     case EDIT_PLANT:
+      console.log(state.myPlants);
       return {
         ...state,
         myPlants: state.myPlants.map((plant) => {
-          if (plant.id === action.payload.id) {
+          if (plant.plantId === action.payload.plantId) {
             return action.payload;
           } else {
             return plant;

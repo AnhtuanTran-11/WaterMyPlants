@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { signInFunc } from "../../store/actions/loginActions";
-import { Link } from 'react-router-dom';
-import SignupStyles from './SignupStyles';
+import { Link, useHistory } from "react-router-dom";
+import SignupStyles from "./SignupStyles";
 
 const SignUp = (props) => {
   const [credentials, setCredentials] = useState({
@@ -12,6 +11,8 @@ const SignUp = (props) => {
     phoneNumber: "",
   });
   const dispatch = useDispatch();
+  let history = useHistory();
+  const state = useSelector((state) => state.loginReducer);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signInFunc(credentials));
@@ -23,6 +24,10 @@ const SignUp = (props) => {
       ...credentials,
       [e.target.name]: e.target.value,
     });
+
+    if (state.isLoggedIn) {
+      history.push("/myplants");
+    }
 
   return (
     <SignupStyles>
@@ -62,6 +67,7 @@ const SignUp = (props) => {
       <Link to="/login">Login</Link>
     </div>
     </div>
+
     </SignupStyles>
   );
 };
