@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { editUserData } from "../store/actions/editUserActions";
-import SignupSchema from "./validation/formSchema";
+import { editUserData } from "../../store/actions/editUserActions";
+import SignupSchema from "../validation/formSchema";
+import ProfileStyles from "./profileStyling"
 
 const UserProfile = () => {
   const loginInfo = useSelector((state) => state.loginReducer);
@@ -26,7 +27,9 @@ const UserProfile = () => {
 
   return (
     <div>
-      <button onClick={() => setIsEditing(!isEditing)}> Edit User Info</button>
+      <ProfileStyles>
+        <div className="cardContainer">
+
 
       {isEditing ? (
         <form onSubmit={formik.handleSubmit}>
@@ -67,11 +70,14 @@ const UserProfile = () => {
         </form>
       ) : (
         <div>
-          <p> username: {loginInfo.userData.username} </p>
-          <p> phoneNumber: {loginInfo.userData.phoneNumber} </p>
-          <p> password: {loginInfo.userData.password} </p>
+          <p> Username: {loginInfo.userData.username} </p>
+          <p> Phone Number: {loginInfo.userData.phoneNumber} </p>
+          <p> Password: {loginInfo.userData.password} </p>
+          <button onClick={() => setIsEditing(!isEditing)}> Edit User Info</button>
         </div>
       )}
+      </div>
+      </ProfileStyles>
     </div>
   );
 };

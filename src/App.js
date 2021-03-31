@@ -4,7 +4,7 @@ import NavBar from "./components/navBar/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Login from "./components/Login/UserLogin";
 import SignUp from "./components/Login/Signup";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./components/Profile/UserProfile";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
