@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const UserLoginStyles = styled.div`
   .loginHeader {
@@ -7,22 +7,37 @@ const UserLoginStyles = styled.div`
   }
   height: 100vh;
   .Login {
-    background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80');
+    background-image: url("https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80");
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     margin-top: -10vh;
   }
+  .mainHeader {
+    color: white;
+    z-index: 1;
+    margin-top: 10rem;
+    text-align: center;
+    border: 2px solid red;
+  }
+  .textContainer h1 {
+    font-size: 5rem;
+  }
+  .textContainer p {
+    margin-top: -2rem;
+  }
   .textContainer {
     border-radius: 10px;
-    opacity: 0.8;
-    background: #E6E6E6;
-    margin-top: 20%;
+    opacity: 0.6;
+    background: #e6e6e6;
+    margin-top: 5rem;
     width: 70%;
+    max-width: 1000px;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -44,8 +59,8 @@ const UserLoginStyles = styled.div`
     text-decoration: none;
   }
   a:visited {
-  color: green;
-}
-`
+    color: green;
+  }
+`;
 
 export default UserLoginStyles;
