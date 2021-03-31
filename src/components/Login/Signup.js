@@ -27,8 +27,9 @@ const SignUp = (props) => {
   return (
     <SignupStyles>
     <div className="Sign-Up">
-      <h3>Sign-up Today!</h3>
-      <form onSubmit={submitHandler}>
+      <div className='textContainer'>
+      <h2 className="signupHeader">Sign-up Today!</h2>
+      <form className="form" onSubmit={submitHandler}>
         <label>
           Username:
           <input
@@ -59,6 +60,7 @@ const SignUp = (props) => {
         <button>Sign-Up</button>
       </form>
       <Link to="/login">Login</Link>
+    </div>
     </div>
     </SignupStyles>
   );
