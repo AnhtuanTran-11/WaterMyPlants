@@ -31,8 +31,8 @@ const MyPlants = () => {
     setPlantEditing(plant);
   };
 
-  const plantDelete = (plant) => {
-    dispatch(deletePlant(plant));
+  const plantDelete = (plantId) => {
+    dispatch(deletePlant(plantId));
   };
 
   return (
@@ -54,7 +54,10 @@ const MyPlants = () => {
                   {plant.h2oFrequency &&
                     `that needs to be watered every ${plant.h2oFrequency} days`}
                 </h1>
-                <button onClick={() => plantDelete(plant)}> DELETE </button>
+                <button onClick={() => plantDelete(plant.plantId)}>
+                  {" "}
+                  DELETE{" "}
+                </button>
               </div>
             );
           })}

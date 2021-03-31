@@ -7,8 +7,6 @@ import plantSchema from "./validation/plantSchema";
 const AddForm = () => {
   const plants = useSelector((state) => state.plantReducer.myPlants);
   const dispatch = useDispatch();
-  console.log(plants);
-
   const formik = useFormik({
     initialValues: {
       nickname: "Plant",
