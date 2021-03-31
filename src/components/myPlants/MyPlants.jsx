@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../store/actions/loginActions";
-import { deletePlant, fetchPlants } from "../store/actions/plantActions";
-import AddForm from "./AddForm";
-import EditForm from "./editForm/EditForm";
+import { fetchUser } from "../../store/actions/loginActions";
+import { deletePlant, fetchPlants } from "../../store/actions/plantActions";
+import AddForm from "../AddForm";
+import EditForm from "../editForm/EditForm";
 import Plant from "./Plant";
+import MyPlantsStyles from "./myPlantsStyling";
 
 const MyPlants = () => {
   const { myPlants, isLoading } = useSelector((state) => state.plantReducer);
@@ -42,25 +43,29 @@ const MyPlants = () => {
   };
 
   return (
-    <div>
-      <h1> MyPlants </h1>
-      <button onClick={() => plantAdder()}> Add a plant</button>
-      {adding ? <AddForm /> : null}
-      {editing ? (
-        <EditForm plant={plantEditing} setEditing={setEditing} />
-      ) : null}
-      {isLoading
-        ? "Loading Plants"
-        : myPlants.map((plant) => {
-            return (
-              <Plant
-                plant={plant}
-                plantEditor={plantEditor}
-                plantDelete={plantDelete}
-              />
-            );
-          })}
-    </div>
+    <MyPlantsStyles>
+      <div className="myPlantsContainer">
+        <h1> MyPlants </h1>
+        <button onClick={() => plantAdder()}> Add a plant</button>
+        {adding ? <AddForm /> : null}
+        {editing ? (
+          <EditForm plant={plantEditing} setEditing={setEditing} />
+        ) : null}
+        <div className="plantContainer">
+          {isLoading
+            ? "Loading Plants"
+            : myPlants.map((plant) => {
+                return (
+                  <Plant
+                    plant={plant}
+                    plantEditor={plantEditor}
+                    plantDelete={plantDelete}
+                  />
+                );
+              })}{" "}
+        </div>
+      </div>
+    </MyPlantsStyles>
   );
 };
 

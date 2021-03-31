@@ -33,7 +33,14 @@ const Login = (props) => {
   return (
     <UserLoginStyles>
       <div className="Login">
+        <div className="mainHeader"></div>
         <div className="textContainer">
+          <h1> Water Your Plants </h1>
+          <p>
+            {" "}
+            This site provides you the tools to water your plants on the correct
+            schedule!{" "}
+          </p>
           <h2 className="loginHeader">Login to your account</h2>
           {loadingLogin ? (
             "LOADING"

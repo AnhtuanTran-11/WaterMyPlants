@@ -32,7 +32,7 @@ export const addPlant = (plant) => {
       .post("https://watermyplant-tt7.herokuapp.com/plants/newplant", plant)
       .then((res) => {
         console.log(res);
-        dispatch({ type: ADD_PLANT, payload: res });
+        dispatch({ type: ADD_PLANT, payload: res.data });
       })
       .catch((err) => {
         console.log(err);
