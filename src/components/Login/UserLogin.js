@@ -6,8 +6,8 @@ import UserLoginStyles from "./UserLoginStyles";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
+    username: "admin",
+    password: "password",
   });
   const dispatch = useDispatch();
   const { isLoggedIn, loadingLogin } = useSelector(
@@ -26,11 +26,9 @@ const Login = (props) => {
       [e.target.name]: e.target.value,
     });
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      history.push("/myplants");
-    }
-  }, [isLoggedIn]);
+  if (isLoggedIn) {
+    history.push("/myplants");
+  }
 
   return (
     <UserLoginStyles>

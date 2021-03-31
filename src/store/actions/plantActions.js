@@ -48,7 +48,7 @@ export const editPlant = (plant) => {
       .patch(
         `https://watermyplant-tt7.herokuapp.com/plants/plant/${plant.plantId}`,
         plant
-      ) //needs plantID
+      )
       .then((res) => {
         console.log(res.data);
         dispatch({ type: EDIT_PLANT, payload: res.data });
