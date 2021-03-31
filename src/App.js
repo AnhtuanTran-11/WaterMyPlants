@@ -1,5 +1,5 @@
 import "./index.css";
-import MyPlants from "./components/MyPlants";
+import MyPlants from "./components/myPlants/MyPlants";
 import NavBar from "./components/navBar/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Login from "./components/Login/UserLogin";
