@@ -6,11 +6,13 @@ import UserLoginStyles from "./UserLoginStyles";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
+    username: "admin",
+    password: "password",
   });
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.loginReducer);
+  const { isLoggedIn, loadingLogin } = useSelector(
+    (state) => state.loginReducer
+  );
   let history = useHistory();
 
   const submitHandler = (e) => {
@@ -24,18 +26,16 @@ const Login = (props) => {
       [e.target.name]: e.target.value,
     });
 
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      history.push("/myplants");
-    }
-  }, [state.isLoggedIn]);
+  if (isLoggedIn) {
+    history.push("/myplants");
+  }
 
   return (
     <UserLoginStyles>
       <div className="Login">
         <div className="textContainer">
           <h2 className="loginHeader">Login to your account</h2>
-          {state.loadingLogin ? (
+          {loadingLogin ? (
             "LOADING"
           ) : (
             <form className="form" onSubmit={submitHandler}>
