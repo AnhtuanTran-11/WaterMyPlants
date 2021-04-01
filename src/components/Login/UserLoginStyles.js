@@ -4,40 +4,47 @@ const UserLoginStyles = styled.div`
   .loginHeader {
     display: flex;
     justify-content: center;
+    text-align: center;
   }
-  height: 100vh;
+  body, html {
+    height: 100%;
+    box-sizing: border-box;
+  }
   .Login {
     background-image: url("https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80");
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
-    margin-top: -10vh;
+    background-size: cover;
+    margin-top: -1rem;
   }
-
   .textContainer h1 {
-    font-size: 5rem;
+    font-size: 4rem;
+    text-align: center;
+    display: flex;
   }
   .textContainer p {
     margin-top: -2rem;
+    text-align: center;
   }
   .textContainer {
     border-radius: 10px;
     opacity: 0.7;
     background: #e6e6e6;
-    margin-top: 15rem;
     width: 70%;
-    max-width: 1000px;
     align-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    height: 70vh;
     align-items: center;
     padding-bottom: 5px;
+    max-width: 70%;
+    margin: 0 auto;
   }
   .form {
     display: flex;
@@ -45,6 +52,7 @@ const UserLoginStyles = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding-bottom: 5px;
+    margin: 0 auto;
   }
   .loading {
     font-size: 1rem;
@@ -71,6 +79,16 @@ const UserLoginStyles = styled.div`
   a:visited {
     color: green;
   }
-`;
+  @media only screen and (max-width: 500px) {
+   .textContainer h1 { 
+      width: 86%;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    .loginHeader {
+      display: none;
+    }
+  }
+`
 
 export default UserLoginStyles;
