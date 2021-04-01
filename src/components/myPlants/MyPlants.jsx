@@ -69,18 +69,20 @@ const MyPlants = () => {
           <EditForm plant={plantEditing} setEditing={setEditing} />
         ) : null}
         <div className="plantContainer">
-          {isLoading
-            ? "Loading Plants"
-            : myPlants.map((plant) => {
-                return (
-                  <Plant
-                    plant={plant}
-                    plantEditor={plantEditor}
-                    plantDelete={plantDelete}
-                    key={plant.plantId}
-                  />
-                );
-              })}{" "}
+          {isLoading ? (
+            <div class="loader">Loading...</div>
+          ) : (
+            myPlants.map((plant) => {
+              return (
+                <Plant
+                  plant={plant}
+                  plantEditor={plantEditor}
+                  plantDelete={plantDelete}
+                  key={plant.plantId}
+                />
+              );
+            })
+          )}{" "}
         </div>
       </div>
     </MyPlantsStyles>

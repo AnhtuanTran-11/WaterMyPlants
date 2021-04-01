@@ -52,6 +52,11 @@ const PlantStyles = styled.div`
     color: white;
     margin-top: 20px;
   }
+  .waterBut {
+    margin: 0 auto;
+    background-color: lightblue;
+    margin-top: 5px;
+  }
 `;
 
 export default PlantStyles;

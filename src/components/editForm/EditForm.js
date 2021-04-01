@@ -20,6 +20,8 @@ const EditForm = (props) => {
           species: values.species,
           h2oFrequency: values.h2oFrequency,
           plantId: props.plant.plantId,
+          img: props.plant.img,
+          baseDate: props.plant.baseDate,
         })
       );
       props.setEditing(false);
