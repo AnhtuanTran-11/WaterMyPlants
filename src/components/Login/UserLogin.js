@@ -6,11 +6,11 @@ import UserLoginStyles from "./UserLoginStyles";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
-    username: "admin",
-    password: "password",
+    username: "",
+    password: "",
   });
   const dispatch = useDispatch();
-  const { isLoggedIn, loadingLogin } = useSelector(
+  const { isLoggedIn, loadingLogin, loginError } = useSelector(
     (state) => state.loginReducer
   );
   let history = useHistory();
@@ -34,6 +34,14 @@ const Login = (props) => {
     <UserLoginStyles>
       <div className="Login">
         <div className="textContainer">
+          {loadingLogin ? <span className="loading"> Loading... </span> : null}
+          {loginError ? (
+            <span className="error">
+              {" "}
+              Please check your Username and Password and try again
+            </span>
+          ) : null}
+
           <h1> Water Your Plants </h1>
           <p>
             {" "}
@@ -41,31 +49,28 @@ const Login = (props) => {
             schedule!{" "}
           </p>
           <h2 className="loginHeader">Login to your account</h2>
-          {loadingLogin ? (
-            "LOADING"
-          ) : (
-            <form className="form" onSubmit={submitHandler}>
-              <label>
-                Username:
-                <input
-                  type="text"
-                  name="username"
-                  value={credentials.username}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Password:
-                <input
-                  type="password"
-                  name="password"
-                  value={credentials.password}
-                  onChange={handleChange}
-                />
-              </label>
-              <button type="submit">Login</button>
-            </form>
-          )}
+          <form className="form" onSubmit={submitHandler}>
+            <label>
+              Username:
+              <input
+                type="text"
+                name="username"
+                value={credentials.username}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+              />
+            </label>
+            <button type="submit">Login</button>
+          </form>
+
           <Link to="/signup">Signup</Link>
         </div>
       </div>

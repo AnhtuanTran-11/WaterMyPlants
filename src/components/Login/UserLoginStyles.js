@@ -46,8 +46,20 @@ const UserLoginStyles = styled.div`
     align-items: center;
     padding-bottom: 5px;
   }
+  .loading {
+    font-size: 1rem;
+    padding-top: 30px;
+  }
+  .error {
+    font-size: 1rem;
+    padding-top: 30px;
+    color: red;
+  }
   label {
     margin-bottom: 10px;
+  }
+  input {
+    margin-left: 10px;
   }
   button {
     margin-top: 15px;
