@@ -25,6 +25,12 @@ const ProfileStyles = styled.div`
     margin-bottom: 15px;
     height: 25px;
   }
+  @media only screen and (max-width: 500px) {
+    .cardContainer {
+
+    width: 80%;
+   
+  }
 `;
 
 export default ProfileStyles;

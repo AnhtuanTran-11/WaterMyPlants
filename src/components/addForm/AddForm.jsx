@@ -7,11 +7,12 @@ import AddFormStyles from "./addStyles";
 
 const AddForm = ({ setAdding }) => {
   const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       nickname: "",
       species: "",
-      h2oFrequency: 0,
+      h2oFrequency: "",
     },
     validationSchema: plantSchema,
     onSubmit: (values) => {
@@ -25,44 +26,53 @@ const AddForm = ({ setAdding }) => {
       <div className="addFormContainer"></div>
       <div className="childAddContainer">
         <h1> Add a new plant</h1>
-        <div className="errors">
-          {formik.errors.h2oFrequency && <p>{formik.errors.h2oFrequency}</p>}
-          {formik.errors.nickname && <p>{formik.errors.nickname}</p>}
-          {formik.errors.species && <p>{formik.errors.species}</p>}
-        </div>
         <form onSubmit={formik.handleSubmit}>
           <div className="innerForm">
-            <label>
-              Nickname:
-              <input
-                name="nickname"
-                id="nickname"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.nickname}
-              />
-            </label>
-
-            <label>
-              Species:
-              <input
-                name="species"
-                id="species"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.species}
-              />
-            </label>
-            <label>
-              Next watering (days):
-              <input
-                name="h2oFrequency"
-                id="h2oFrequency"
-                type="number"
-                onChange={formik.handleChange}
-                value={formik.values.h2oFrequency}
-              />
-            </label>
+            <label htmlFor="nickname"> </label>
+            Nickname:
+            <input
+              name="nickname"
+              id="nickname"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.nickname}
+              onBlur={formik.handleBlur}
+            />
+            <span className="error">
+              {formik.touched.nickname && formik.errors.nickname && (
+                <p>{formik.errors.nickname}</p>
+              )}{" "}
+            </span>
+            <label htmlFor="species"> </label>
+            Species:
+            <input
+              name="species"
+              id="species"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.species}
+              onBlur={formik.handleBlur}
+            />
+            <span className="error">
+              {formik.touched.species && formik.errors.species && (
+                <p>{formik.errors.species}</p>
+              )}{" "}
+            </span>
+            <label htmlFor="h2oFrequency"> </label>
+            Next watering (days):
+            <input
+              name="h2oFrequency"
+              id="h2oFrequency"
+              type="number"
+              onChange={formik.handleChange}
+              value={formik.values.h2oFrequency}
+              onBlur={formik.handleBlur}
+            />
+            <span className="error">
+              {formik.touched.h2oFrequency && formik.errors.h2oFrequency && (
+                <p>{formik.errors.h2oFrequency}</p>
+              )}{" "}
+            </span>
           </div>
           <div className="buttonContainer">
             <button onClick={() => setAdding(false)}>Cancel</button>
