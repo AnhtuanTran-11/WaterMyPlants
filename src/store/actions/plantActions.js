@@ -27,7 +27,7 @@ export const fetchPlants = (id) => {
 
 export const addPlant = (plant) => {
   return (dispatch) => {
-    // console.log("Add Plant actions", plant);
+    console.log("Add Plant actions", plant);
     axiosWithAuth()
       .post("https://watermyplant-tt7.herokuapp.com/plants/newplant", plant)
       .then((res) => {

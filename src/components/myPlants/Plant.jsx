@@ -13,12 +13,12 @@ const Plant = ({ plant, plantEditor, plantDelete }) => {
   };
 
   let waterResult = waterCalculator();
-
+  console.log(plant.img);
   return (
     <PlantStyles>
       <div className="cardContainer" key={plant.plantId}>
         <img
-          src="https://bit.ly/3frwdyF"
+          src={plant.img ? plant.img : "https://bit.ly/3frwdyF"}
           alt="personal plant"
           className="plantImg"
         />

@@ -20,9 +20,9 @@ const NavBarStyles = styled.div`
     text-decoration: none;
     color: black;
   }
-  @media only screen and (max-width: 500px) {
+  /* @media only screen and (max-width: 500px) {
     width: 86%;
-  }
+  } */
 `;
 
 export default NavBarStyles;

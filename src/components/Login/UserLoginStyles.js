@@ -40,7 +40,7 @@ const UserLoginStyles = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 70vh;
+    height: 80vh;
     align-items: center;
     padding-bottom: 5px;
     max-width: 70%;

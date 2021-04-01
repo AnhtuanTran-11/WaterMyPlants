@@ -13,6 +13,7 @@ const AddForm = ({ setAdding }) => {
       nickname: "",
       species: "",
       h2oFrequency: "",
+      img: "",
     },
     validationSchema: plantSchema,
     onSubmit: (values) => {
@@ -66,6 +67,16 @@ const AddForm = ({ setAdding }) => {
               type="number"
               onChange={formik.handleChange}
               value={formik.values.h2oFrequency}
+              onBlur={formik.handleBlur}
+            />
+            <label htmlFor="img"> </label>
+            Add an image:
+            <input
+              name="img"
+              id="img"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.img}
               onBlur={formik.handleBlur}
             />
             <span className="error">
