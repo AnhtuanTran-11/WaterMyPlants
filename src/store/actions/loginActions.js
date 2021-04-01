@@ -26,7 +26,7 @@ export const setUserData = (user) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.setItem("token", res.data.access_token);
         dispatch({ type: LOG_IN_SUCCESS });
       })
@@ -41,7 +41,7 @@ export const fetchUser = (user) => {
     axiosWithAuth()
       .get("/users/getuserinfo")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch({ type: FETCH_USER, payload: res.data });
       })
       .catch((err) => {
@@ -57,7 +57,7 @@ export const signInFunc = (user) => {
     axios
       .post("https://watermyplant-tt7.herokuapp.com/createnewuser", user)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("token", res.data.access_token);
         dispatch({ type: SIGNIN_IN_SUCCESS });
       })
