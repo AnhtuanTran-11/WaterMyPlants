@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useFormik } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { editUserData } from "../../store/actions/editUserActions";
 import SignupSchema from "../validation/formSchema";
 import ProfileStyles from "./profileStyling";
+import { fetchUser } from "../../store/actions/loginActions";
 
 const UserProfile = () => {
   const loginInfo = useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
-  const formik = useFormik({
-    initialValues: {
-      username: loginInfo.userData.username,
-      phoneNumber: loginInfo.userData.phoneNumber,
-      password: loginInfo.userData.password,
-    },
-    validationSchema: SignupSchema,
-    onSubmit: (values) => {
-      dispatch(editUserData(values));
-      console.log(values);
-    },
-  });
+  useEffect(() => {
+    // console.log("fetchUSER dispatched");
+    dispatch(fetchUser());
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -41,43 +34,32 @@ const UserProfile = () => {
       <ProfileStyles>
         <div className="cardContainer">
           {isEditing ? (
-            <form onSubmit={formik.handleSubmit}>
-              <button type="submit">submit</button>
-              <label>
-                username
-                <input
-                  name="username"
-                  id="username"
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                />
-              </label>
-              {formik.errors.username && <p>{formik.errors.username}</p>}
-              <label>
-                phoneNumber
-                <input
-                  name="phoneNumber"
-                  id="phoneNumber"
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.phoneNumber}
-                />
-              </label>
-              {formik.errors.phoneNumber && <p>{formik.errors.phoneNumber}</p>}
-              <label>
-                password
-                <input
-                  name="password"
-                  id="password"
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                />
-              </label>
-              {formik.errors.password && <p>{formik.errors.password}</p>}
-              <button onClick={() => setIsEditing(false)}> Cancel </button>
-            </form>
+            <Formik
+              initialValues={{
+                username: loginInfo.userData.username,
+                phoneNumber: loginInfo.userData.phoneNumber,
+                password: loginInfo.userData.password,
+              }}
+              validationSchema={SignupSchema}
+              onSubmit={(values) => {
+                console.log(values);
+                dispatch(editUserData(loginInfo.userData.userid, values));
+              }}
+            >
+              <Form className="formcontainer">
+                <label htmlFor="username">Username</label>
+                <Field name="username" type="text" />
+                <ErrorMessage name="username" />
+
+                <label htmlFor="password">Password</label>
+                <Field name="password" type="text" />
+                <ErrorMessage name="password" />
+
+                <button onClick={() => setIsEditing(false)}> Cancel </button>
+
+                <button type="submit">Submit</button>
+              </Form>
+            </Formik>
           ) : (
             <div>
               <p> Username: {loginInfo.userData.username} </p>

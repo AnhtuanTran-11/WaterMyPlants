@@ -23,7 +23,16 @@ const ProfileStyles = styled.div`
     border: none;
     color: white;
     margin-bottom: 15px;
+    margin-top: 20px;
     height: 25px;
+  }
+  .formcontainer{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
   }
   @media only screen and (max-width: 500px) {
     .cardContainer {

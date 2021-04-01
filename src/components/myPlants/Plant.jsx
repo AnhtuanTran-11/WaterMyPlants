@@ -1,9 +1,22 @@
 import React from "react";
 import PlantStyles from "./plantStyling";
+import { useDispatch } from "react-redux";
+import { editPlant } from "../../store/actions/plantActions";
 
 const Plant = ({ plant, plantEditor, plantDelete }) => {
+  const dispatch = useDispatch();
+  // const waterCalculator = () => {
+  //   let dayCounter = Math.floor((Date.now() - 1617146130296) / 86400000);
+  //   let daysToWater = plant.h2oFrequency - (dayCounter % plant.h2oFrequency);
+  //   if (dayCounter % plant.h2oFrequency === 0) {
+  //     return "Water Today";
+  //   } else {
+  //     return daysToWater;
+  //   }
+  // };
+
   const waterCalculator = () => {
-    let dayCounter = Math.floor((Date.now() - 1617146130296) / 86400000);
+    let dayCounter = Math.floor((Date.now() - plant.baseDate) / 86400000);
     let daysToWater = plant.h2oFrequency - (dayCounter % plant.h2oFrequency);
     if (dayCounter % plant.h2oFrequency === 0) {
       return "Water Today";
@@ -12,8 +25,21 @@ const Plant = ({ plant, plantEditor, plantDelete }) => {
     }
   };
 
+  const clickOnWater = () => {
+    dispatch(
+      editPlant({
+        nickname: plant.nickname,
+        species: plant.species,
+        h2oFrequency: plant.h2oFrequency,
+        plantId: plant.plantId,
+        img: plant.img,
+        baseDate: Date.now(),
+      })
+    );
+  };
+
   let waterResult = waterCalculator();
-  console.log(plant.img);
+
   return (
     <PlantStyles>
       <div className="cardContainer" key={plant.plantId}>
@@ -30,6 +56,10 @@ const Plant = ({ plant, plantEditor, plantDelete }) => {
         <p className="watering">
           Days until water: <br></br> <span> {waterResult} </span>{" "}
         </p>
+        <button className="waterBut" onClick={() => clickOnWater()}>
+          {" "}
+          I just watered{" "}
+        </button>
         <div className="buttonContainer">
           <button
             className="deleteBut"

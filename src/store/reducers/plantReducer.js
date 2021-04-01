@@ -10,13 +10,13 @@ import {
 
 const initialData = {
   myPlants: [
-    {
-      id: 500,
-      nickname: "",
-      species: "",
-      h2oFrequency: 0,
-      // image: (optional)
-    },
+    // {
+    //   // id: 500,
+    //   // nickname: "",
+    //   // species: "",
+    //   // h2oFrequency: 0,
+    //   // // image: (optional)
+    // },
   ],
   isLoading: false,
   errorMessage: "",

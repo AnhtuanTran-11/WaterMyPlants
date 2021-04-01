@@ -14,6 +14,7 @@ const AddForm = ({ setAdding }) => {
       species: "",
       h2oFrequency: "",
       img: "",
+      baseDate: Date.now(),
     },
     validationSchema: plantSchema,
     onSubmit: (values) => {
