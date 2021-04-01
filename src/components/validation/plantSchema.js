@@ -5,9 +5,11 @@ const plantSchema = yup.object().shape({
     .string()
     .required("nickname is required")
     .min(2, "nickname must be a minimum of 8 characters long"),
-  species: yup.string().required("species is required"),
+  species: yup
+    .string()
+    .required("species is required")
+    .min(3, "species must be 3 characters"),
   h2oFrequency: yup.number().required("h20Frequency is required"),
-  // going to figure out how to make it mix of numbers and letters
 });
 
 export default plantSchema;

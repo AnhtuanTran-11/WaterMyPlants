@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const PlantStyles = styled.div`
-    display: flex;
-    
+  display: flex;
+
   .cardContainer {
     border: 1px solid lightgrey;
     border-radius: 5%;
@@ -14,9 +14,9 @@ const PlantStyles = styled.div`
     grid-template-rows: 10rem 2rem 2rem 2rem;
     grid-template-areas: "image";
     margin: 2rem 2rem;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   }
-  .plantImg{
+  .plantImg {
     grid-area: image;
     object-fit: cover;
     height: 100%;
@@ -24,26 +24,33 @@ const PlantStyles = styled.div`
     position: center;
     margin: 0 auto;
   }
-  .plantNickname{
+  .plantNickname {
     margin: 0 auto;
   }
-  .plantSpecies{
+  .plantSpecies {
     margin: 0 auto;
   }
-  .watering{
+  .watering {
     margin: 0 auto;
   }
-  .buttonContainer{
-    display:flex;
+  p {
+    text-align: center;
+  }
+  span {
+    font-weight: 900;
+  }
+  .buttonContainer {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
-  button{
+  button {
     width: 5rem;
     background: green;
     border-radius: 3px;
     border: none;
     color: white;
+    margin-top: 20px;
   }
 `;
 

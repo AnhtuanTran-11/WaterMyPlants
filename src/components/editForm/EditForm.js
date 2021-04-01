@@ -28,7 +28,8 @@ const EditForm = (props) => {
 
   return (
     <EditFormStyles>
-      <div className="addFormContainer">
+      <div className="addFormContainer"></div>
+      <div className="childAddForm">
         <h1> Edit your plant</h1>
         <form onSubmit={formik.handleSubmit}>
           <label>
@@ -42,7 +43,7 @@ const EditForm = (props) => {
             />
           </label>
           <label>
-            Next watering (days):
+            Species:
             <input
               name="species"
               id="species"

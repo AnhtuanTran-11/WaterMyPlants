@@ -13,16 +13,23 @@ const Plant = ({ plant, plantEditor, plantDelete }) => {
   };
 
   let waterResult = waterCalculator();
-  console.log(waterResult);
 
   return (
     <PlantStyles>
       <div className="cardContainer" key={plant.plantId}>
-        <img src="https://bit.ly/3frwdyF" className="plantImg" />
+        <img
+          src="https://bit.ly/3frwdyF"
+          alt="personal plant"
+          className="plantImg"
+        />
         <h2 className="plantNickname">{plant.nickname}</h2>
         <h3 className="plantSpecies">{plant.species}</h3>
-        <p className="watering">{`Water Frequency: every ${plant.h2oFrequency} days`}</p>
-        <p className="watering">{`Days until water: ${waterResult}`}</p>
+        <p className="watering">
+          Water Frequency: every {plant.h2oFrequency} days
+        </p>
+        <p className="watering">
+          Days until water: <br></br> <span> {waterResult} </span>{" "}
+        </p>
         <div className="buttonContainer">
           <button
             className="deleteBut"

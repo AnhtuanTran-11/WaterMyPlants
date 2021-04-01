@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { addPlant } from "../../store/actions/plantActions";
 import plantSchema from "../validation/plantSchema";
 import AddFormStyles from "./addStyles";
 
-const AddForm = ({ plantAdder }) => {
-  const plants = useSelector((state) => state.plantReducer.myPlants);
+const AddForm = ({ setAdding }) => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -17,12 +16,14 @@ const AddForm = ({ plantAdder }) => {
     validationSchema: plantSchema,
     onSubmit: (values) => {
       dispatch(addPlant(values));
+      setAdding(false);
     },
   });
 
   return (
     <AddFormStyles>
-      <div className="addFormContainer">
+      <div className="addFormContainer"></div>
+      <div className="childAddContainer">
         <h1> Add a new plant</h1>
         <div className="errors">
           {formik.errors.h2oFrequency && <p>{formik.errors.h2oFrequency}</p>}
@@ -63,11 +64,12 @@ const AddForm = ({ plantAdder }) => {
               />
             </label>
           </div>
+          <div className="buttonContainer">
+            <button onClick={() => setAdding(false)}>Cancel</button>
+            <button type="submit">Submit</button>
+          </div>
         </form>
-        <div className="buttonContainer">
-          <button onClick={() => plantAdder()}>Cancel</button>
-          <button type="submit">Submit</button>
-        </div>
+
         <img src="https://bit.ly/2QMRGYs" alt="plants" />
       </div>
     </AddFormStyles>

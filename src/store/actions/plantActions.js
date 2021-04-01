@@ -11,11 +11,11 @@ export const DELETE_PLANT = "DELETE_PLANT";
 export const fetchPlants = (id) => {
   return (dispatch) => {
     dispatch({ type: START_LOAD_PLANTS });
-    console.log("fetchplants actions");
+    // console.log("fetchplants actions");
     axiosWithAuth()
       .get(`https://watermyplant-tt7.herokuapp.com/plants/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({ type: LOADED_PLANTS, payload: res.data });
       })
       .catch((err) => {
@@ -27,7 +27,7 @@ export const fetchPlants = (id) => {
 
 export const addPlant = (plant) => {
   return (dispatch) => {
-    console.log("Add Plant actions", plant);
+    // console.log("Add Plant actions", plant);
     axiosWithAuth()
       .post("https://watermyplant-tt7.herokuapp.com/plants/newplant", plant)
       .then((res) => {
@@ -50,7 +50,7 @@ export const editPlant = (plant) => {
         plant
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({ type: EDIT_PLANT, payload: res.data });
       })
       .catch((err) => {
@@ -65,7 +65,7 @@ export const deletePlant = (plantId) => {
     axiosWithAuth()
       .delete(`https://watermyplant-tt7.herokuapp.com/plants/plant/${plantId}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch({ type: DELETE_PLANT, payload: plantId });
       })
       .catch((err) => {

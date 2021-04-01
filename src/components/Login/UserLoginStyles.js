@@ -18,13 +18,7 @@ const UserLoginStyles = styled.div`
     background-size: 100%;
     margin-top: -10vh;
   }
-  .mainHeader {
-    color: white;
-    z-index: 1;
-    margin-top: 10rem;
-    text-align: center;
-    border: 2px solid red;
-  }
+
   .textContainer h1 {
     font-size: 5rem;
   }
@@ -33,9 +27,9 @@ const UserLoginStyles = styled.div`
   }
   .textContainer {
     border-radius: 10px;
-    opacity: 0.6;
+    opacity: 0.7;
     background: #e6e6e6;
-    margin-top: 5rem;
+    margin-top: 15rem;
     width: 70%;
     max-width: 1000px;
     align-self: center;
@@ -55,8 +49,12 @@ const UserLoginStyles = styled.div`
   label {
     margin-bottom: 10px;
   }
+  button {
+    margin-top: 15px;
+  }
   a {
     text-decoration: none;
+    margin-top: 15px;
   }
   a:visited {
     color: green;

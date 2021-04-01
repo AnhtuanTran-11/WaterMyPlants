@@ -16,14 +16,14 @@ const MyPlants = () => {
   const [plantEditing, setPlantEditing] = useState(null);
 
   useEffect(() => {
-    console.log("fetchUSER dispatched");
+    // console.log("fetchUSER dispatched");
     dispatch(fetchUser());
   }, []);
 
   useEffect(() => {
-    console.log(user.userid);
+    // console.log(user.userid);
     if (user.userid) {
-      console.log("fetchplants dispatched");
+      // console.log("fetchplants dispatched");
       dispatch(fetchPlants(user.userid));
     }
   }, [user.userid]);
@@ -43,9 +43,25 @@ const MyPlants = () => {
     dispatch(deletePlant(plantId));
   };
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      setAdding(false);
+      setEditing(false);
+    }
+  };
+
   return (
     <MyPlantsStyles>
-      {adding ? <AddForm plantAdder={plantAdder} /> : null}
+      {adding ? (
+        <AddForm setAdding={setAdding} onKeyDown={handleKeyDown} />
+      ) : null}
       <div className="myPlantsContainer">
         <h1> MyPlants </h1>
         <button onClick={() => plantAdder()}> Add a plant</button>
@@ -61,6 +77,7 @@ const MyPlants = () => {
                     plant={plant}
                     plantEditor={plantEditor}
                     plantDelete={plantDelete}
+                    key={plant.plantId}
                   />
                 );
               })}{" "}

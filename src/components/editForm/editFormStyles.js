@@ -15,6 +15,15 @@ const EditFormStyles = styled.div`
     border-radius: 20px;
     opacity: 0.9;
   }
+  .childAddForm {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    height: 80vh;
+    width: 80%;
+    text-align: center;
+    border-radius: 20px;
+  }
   form {
     margin-top: 5%;
   }

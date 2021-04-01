@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/actions/loginActions";
 import { useHistory, Link } from "react-router-dom";
@@ -33,7 +33,6 @@ const Login = (props) => {
   return (
     <UserLoginStyles>
       <div className="Login">
-        <div className="mainHeader"></div>
         <div className="textContainer">
           <h1> Water Your Plants </h1>
           <p>
