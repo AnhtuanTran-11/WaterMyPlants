@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const NavBarStyles = styled.div`
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -17,6 +18,8 @@ const NavBarStyles = styled.div`
     text-decoration: none;
     color: black;
   }
+  margin: 0 auto;
+  z-index: 9999;
 `;
 
 export default NavBarStyles;
