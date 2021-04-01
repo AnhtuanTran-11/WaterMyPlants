@@ -18,7 +18,7 @@ const MyPlants = () => {
   useEffect(() => {
     // console.log("fetchUSER dispatched");
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     // console.log(user.userid);
@@ -26,7 +26,7 @@ const MyPlants = () => {
       // console.log("fetchplants dispatched");
       dispatch(fetchPlants(user.userid));
     }
-  }, [user.userid]);
+  }, [user.userid, dispatch]);
 
   const plantEditor = (plant) => {
     setAdding(false);

@@ -14,6 +14,7 @@ const AddFormStyles = styled.div`
     text-align: center;
     border-radius: 20px;
     opacity: 0.9;
+    box-sizing: border-box;
   }
   .childAddContainer {
     position: fixed;
@@ -23,9 +24,9 @@ const AddFormStyles = styled.div`
     width: 80%;
     text-align: center;
     border-radius: 20px;
+    box-sizing: border-box;
   }
   form {
-    margin-top: 5%;
   }
   .errors {
     color: red;
@@ -51,8 +52,9 @@ const AddFormStyles = styled.div`
   img {
     height: 40%;
     border-radius: 15px;
-    margin-top: 2%;
+    padding-top: 2%;
     padding-bottom: 10px;
+    /* max-width: 60%; */
   }
   button {
     width: 6rem;
@@ -62,6 +64,11 @@ const AddFormStyles = styled.div`
     border: none;
     color: white;
     margin: 10px;
+  }
+  @media only screen and (max-width: 500px) {
+    img {
+      display: none;
+    }
   }
 `;
 

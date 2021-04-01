@@ -63,6 +63,11 @@ const EditFormStyles = styled.div`
     color: white;
     margin: 10px;
   }
+  @media only screen and (max-width: 500px) {
+    img {
+      display: none;
+    }
+  }
 `;
 
 export default EditFormStyles;

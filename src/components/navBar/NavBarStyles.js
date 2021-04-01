@@ -14,12 +14,15 @@ const NavBarStyles = styled.div`
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   text-rendering: geometricPrecision;
+  margin: 0 auto;
+  z-index: 9999;
   a {
     text-decoration: none;
     color: black;
   }
-  margin: 0 auto;
-  z-index: 9999;
+  @media only screen and (max-width: 500px) {
+    width: 86%;
+  }
 `;
 
 export default NavBarStyles;

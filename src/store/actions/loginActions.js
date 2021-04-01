@@ -31,7 +31,7 @@ export const setUserData = (user) => {
         dispatch({ type: LOG_IN_SUCCESS });
       })
       .catch((err) => {
-        dispatch({ type: LOG_IN_FAIL, payload: err });
+        dispatch({ type: LOG_IN_FAIL, payload: err.response.data.error });
       });
   };
 };
