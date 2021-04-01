@@ -18,7 +18,9 @@ const Plant = ({ plant, plantEditor, plantDelete }) => {
   const waterCalculator = () => {
     let dayCounter = Math.floor((Date.now() - plant.baseDate) / 86400000);
     let daysToWater = plant.h2oFrequency - (dayCounter % plant.h2oFrequency);
-    if (dayCounter % plant.h2oFrequency === 0) {
+    if (Date.now() - plant.baseDate < 86400000) {
+      return plant.h2oFrequency;
+    } else if (dayCounter % plant.h2oFrequency === 0) {
       return "Water Today";
     } else {
       return daysToWater;
