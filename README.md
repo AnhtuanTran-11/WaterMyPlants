@@ -1,4 +1,4 @@
-# Water my plants TT-WEBFT-7
+# Water My Plants
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
